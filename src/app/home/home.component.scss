@@ -1,0 +1,11 @@
+.heading {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.search-result {
+  position: absolute;
+  z-index: 9999;
+  width: 26%;
+  border: 0.5px solid #ccc;
+}

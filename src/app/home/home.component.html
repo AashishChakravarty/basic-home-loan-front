@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 offset-md-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search Your Word"
+        (input)="onSearch($event)"
+        [(ngModel)]="search"
+      />
+      <!-- <button type="submit" class="btn mx-2 btn-primary" (click)="onSearch()">Search</button> -->
+      <div *ngIf="searchResult$ | async as searchResult" class="search-result">
+        <!-- <p>User posts titles:</p> -->
+        <ul class="list-group list-group-flush" *ngIf="isSearch">
+          <li
+            class="list-group-item"
+            *ngFor="let searchWord of searchResult"
+            (click)="selectResult(searchWord)"
+          >
+            {{ searchWord.word }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 offset-md-3 mt-3">
+    <div class="heading">{{ heading }}</div>
+    <ul class="list-group list-group-flush">
+      <li
+        class="list-group-item bg-transparent"
+        *ngFor="let words of wordsList"
+      >
+        {{ words.word }}
+      </li>
+    </ul>
+  </div>
+</div>
