@@ -8,9 +8,7 @@
         (input)="onSearch($event)"
         [(ngModel)]="search"
       />
-      <!-- <button type="submit" class="btn mx-2 btn-primary" (click)="onSearch()">Search</button> -->
       <div *ngIf="searchResult$ | async as searchResult" class="search-result">
-        <!-- <p>User posts titles:</p> -->
         <ul class="list-group list-group-flush" *ngIf="isSearch">
           <li
             class="list-group-item"

@@ -7,15 +7,27 @@ import {
   filter,
   switchMap,
 } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HomeService {
+  BASE_URL = environment.BASE_URL;
+  DATAMUSE_API_URL = environment.DATAMUSE_API_URL;
+
   constructor(private http: HttpClient) {}
 
+  addWord(data: any): Observable<any> {
+    return this.http.post(`${this.BASE_URL}words`, data);
+  }
+
+  topWords(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}words`);
+  }
+
   getRhyming(word: string): Observable<any> {
-    return this.http.get('https://api.datamuse.com/words', {
+    return this.http.get(`${this.DATAMUSE_API_URL}words`, {
       params: {
         max: '10',
         rel_rhy: word,
@@ -33,7 +45,7 @@ export class HomeService {
   }
 
   searchEntries(word) {
-    return this.http.get('https://api.datamuse.com/sug', {
+    return this.http.get(`${this.DATAMUSE_API_URL}sug`, {
       params: {
         s: word,
       },
